@@ -34,6 +34,8 @@ public class CollisionEx extends JFrame {
 			}
 		});
 		}
+
+		//I commented this out cuz it was confusing eclipse
 		if (mode == 1){
 		//	HowToPlay a = new HowToPlay();
 		//	a.setVisible(true);
