@@ -22,7 +22,7 @@ public class CollisionEx extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		int mode = JOptionPane.showOptionDialog(null, "", "Game Mode Select", JOptionPane.DEFAULT_OPTION,
+		int mode = JOptionPane.showOptionDialog(null, "            Experienced                Noob", "Menu", JOptionPane.DEFAULT_OPTION,
 				JOptionPane.PLAIN_MESSAGE, null, new String[] {"Play", "How to Play"}, null);
 		if (mode == 0){
 			EventQueue.invokeLater(new Runnable() {
@@ -35,10 +35,9 @@ public class CollisionEx extends JFrame {
 		});
 		}
 
-		//I commented this out cuz it was confusing eclipse
 		if (mode == 1){
-		//	HowToPlay a = new HowToPlay();
-		//	a.setVisible(true);
+		HowToPlay a = new HowToPlay();
+		a.setVisible(true);
 		}
 	}
 }

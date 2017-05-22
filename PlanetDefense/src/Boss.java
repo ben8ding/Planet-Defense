@@ -1,30 +1,33 @@
 
-
-public class Boss extends Sprite {
-
-
-    private int time = 100;
+public class Boss extends Alien {
+	private int time = 100;
 	private int y = 150;
-	public static int speed = 1;
+	private static int speed = 1;
 	private static int health = 100;
-    
-    public Boss(int x, int y) {
-        super(x, y);
 
-        initBoss();
-    }
+	public Boss(int x, int y, int health) {
+		super(x, y, health);
+		this.health = health;
+		
+		vis = true;
+		initBoss();
+	}
 
-    private void initBoss() {
+	private void initBoss() {
 
-        loadImage("alien.png");
-        getImageDimensions();
-    }
-    
-    public static void bossDamage(){
-    	health--;
-    }
+		loadImage("alien.png");
+		getImageDimensions();
+	}
 
-    public void move() {
-        x -= speed;
-    }
+	public static void bossDamage() {
+		health--;
+	}
+
+	public void move() {
+		x -= speed;
+	}
+
+	public static void setSpeed() {
+		speed = 1;
+	}
 }

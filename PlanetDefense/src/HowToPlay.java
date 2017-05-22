@@ -1,21 +1,14 @@
-/*import javax.swing.*;
+import javax.swing.*;
 import java.awt.*;
  
 
 public class HowToPlay extends JFrame {
 	public HowToPlay(){
-		
-	}
-	private void initInst(){
 		setResizable(false);
 		pack();
 
-		setTitle("Collision");
-		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
-	public static void main(String [] args){
-		int mode = JOptionPane.showOptionDialog(null, "", "Ready", JOptionPane.DEFAULT_OPTION,
+		int mode = JOptionPane.showOptionDialog(null, "Your Instructions are as follows:\nYou are a spaceship driver trying to defend your green planet from aliens.\nYour controls are:\nArrow keys to move around\nZ to shoot forward (primary fire)\nX to shoot to the side (secondary/alt fire)\nESC to pause and unpause ", "Ready", JOptionPane.DEFAULT_OPTION,
 				JOptionPane.PLAIN_MESSAGE, null, new String[] {"Back to the Game"}, null);
 		
 		if(mode == 0){
@@ -24,4 +17,3 @@ public class HowToPlay extends JFrame {
 		}
 	}
 }
-*/

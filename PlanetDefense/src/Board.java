@@ -17,6 +17,7 @@ public class Board extends JPanel implements ActionListener {
 
 	public Timer timer;
 	private Craft craft;
+	private ArrayList<Boss> boss1;
 	private ArrayList<Alien> aliens;
 	private static boolean ingame;
 	private final int ICRAFT_X = 40;
@@ -28,26 +29,9 @@ public class Board extends JPanel implements ActionListener {
 	private int score = -1;
 	private static int lives = 5;
 	public static boolean isPause = false;
-
-	public void spawn() {
-
-		if (time % 50 == 0) {
-			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20)));
-		}
-		if ((time - 33) % 50 == 0 && time >= 2500) {
-			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20)));
-		}
-		if (time % 38 == 0 && time >= 5000) {
-			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20)));
-		}
-		if (time % 25 == 0 && time >= 7500) {
-			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20)));
-		}
-		if (time == 6000) {
-
-		}
-	}
-
+	private int alienLevel = 1;
+	private boolean lifeLost;
+	private int displayTime = 0;
 	public Board() {
 
 		initBoard();
@@ -77,6 +61,30 @@ public class Board extends JPanel implements ActionListener {
 
 	}
 
+	public void initBosss() {
+		boss1 = new ArrayList<>();
+
+		spawn();
+
+	}
+
+	public void spawn() {
+
+		if (time % 50 == 0) {
+			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
+		}
+		if ((time - 33) % 50 == 0 && time >= 2500) {
+			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
+		}
+		if (time % 38 == 0 && time >= 5000) {
+			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
+		}
+		if (time % 25 == 0 && time >= 7500) {
+			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
+		}
+
+	}
+
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -86,14 +94,32 @@ public class Board extends JPanel implements ActionListener {
 			drawObjects(g);
 
 		} else {
-
+			lifeLost = false;
 			drawGameOver(g);
+			
 		}
 		if (isPause) {
 			drawPause(g);
 		}
+		if (lifeLost) {
+			drawLifeLost(g);
+			displayTime+=5;
+			if (displayTime == 100){
+				lifeLost = false;
+				displayTime = 0;
+			}
+		}
 
 		Toolkit.getDefaultToolkit().sync();
+	}
+
+	private void drawLifeLost(Graphics g){
+		Font small = new Font("Helvetica", Font.BOLD, 14);
+		FontMetrics fm = getFontMetrics(small);
+		g.setFont(small);
+		g.setColor(Color.WHITE);
+		g.drawString("Life Lost!", craft.getX(),craft.getY());
+		
 	}
 
 	private void drawObjects(Graphics g) {
@@ -115,11 +141,16 @@ public class Board extends JPanel implements ActionListener {
 				g.drawImage(a.getImage(), a.getX(), a.getY(), this);
 			}
 		}
+
 		String lives = "Lives left: " + this.lives;
 		g.setColor(Color.WHITE);
 		g.drawString("Aliens Killed: " + (score + 1), 5, 15);
 		g.drawString("Overheat Percent: " + Craft.getOverheat() + '%', 5, 30);
 		g.drawString(lives, 5, 45);
+		g.drawString("Time: " + time + "", 5, 60);
+		g.setColor(new Color (0, 100, 0));
+		g.fillOval(-150, 0, 200, 600);
+		g.setColor(Color.WHITE);
 	}
 
 	private void drawGameOver(Graphics g) {
@@ -164,9 +195,11 @@ public class Board extends JPanel implements ActionListener {
 		}
 		if (score + 1 == 50) {
 			Craft.setLevel(3);
+			alienLevel = 2;
 		}
 		if (score + 1 == 100) {
 			Craft.setLevel(4);
+			alienLevel = 3;
 		}
 
 		if (score + 1 >= 300) {
@@ -193,9 +226,7 @@ public class Board extends JPanel implements ActionListener {
 		if (!ingame) {
 			timer.stop();
 		}
-		// if (isPause) {
-		// timer.stop();
-		// }
+
 	}
 
 	private void updateCraft() {
@@ -229,12 +260,18 @@ public class Board extends JPanel implements ActionListener {
 			if (a.isVisible()) {
 				a.move();
 			} else {
-				aliens.remove(i);
-				score++;
+				a.damage();
+				if (a.getHealth() == 0) {
+					aliens.remove(i);
+				}
+
 			}
 			if (a.getX() <= 0) {
+
 				aliens.remove(i);
+
 				lives--;
+				lifeLost = true;
 			}
 
 		}
@@ -250,7 +287,7 @@ public class Board extends JPanel implements ActionListener {
 			if (r3.intersects(r2)) {
 				alien.setVisible(false);
 				lives--;
-
+				lifeLost = true;
 			}
 		}
 
@@ -266,7 +303,12 @@ public class Board extends JPanel implements ActionListener {
 
 				if (r1.intersects(r2)) {
 					m.setVisible(false);
-					alien.setVisible(false);
+					alien.damage();
+					if (alien.getHealth() == 0) {
+						alien.setVisible(false);
+						score++;
+					}
+
 				}
 			}
 		}
