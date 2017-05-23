@@ -1,14 +1,12 @@
 
-public class Boss extends Alien {
-	private int time = 100;
-	private int y = 150;
-	private static int speed = 1;
-	private static int health = 100;
-
+public class Boss extends Sprite {
+	
+	private int speed = 1;
+	private int health = 100;
+	private int bossMoveTimer;
 	public Boss(int x, int y, int health) {
-		super(x, y, health);
+		super(x, y);
 		this.health = health;
-		
 		vis = true;
 		initBoss();
 	}
@@ -19,15 +17,22 @@ public class Boss extends Alien {
 		getImageDimensions();
 	}
 
-	public static void bossDamage() {
+	public void bossDamage() {
 		health--;
 	}
 
 	public void move() {
-		x -= speed;
+		
+		bossMoveTimer++;
+		System.out.println(bossMoveTimer);
+		if (bossMoveTimer % 10 == 0)
+		x-=speed;
+		
 	}
-
-	public static void setSpeed() {
+	public int getHealth(){
+		return health;
+	}
+	public void setSpeed() {
 		speed = 1;
 	}
 }

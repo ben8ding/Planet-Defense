@@ -49,7 +49,7 @@ public class Board extends JPanel implements ActionListener {
 		craft = new Craft(ICRAFT_X, ICRAFT_Y);
 
 		initAliens();
-
+		initBoss();
 		timer = new Timer(DELAY, this);
 		timer.start();
 	}
@@ -61,16 +61,16 @@ public class Board extends JPanel implements ActionListener {
 
 	}
 
-	public void initBosss() {
+	public void initBoss() {
 		boss1 = new ArrayList<>();
 
-		spawn();
+		bossSpawn();
 
 	}
 
 	public void spawn() {
 
-		if (time % 50 == 0) {
+		/*if (time % 50 == 0) {
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
 		if ((time - 33) % 50 == 0 && time >= 2500) {
@@ -81,10 +81,14 @@ public class Board extends JPanel implements ActionListener {
 		}
 		if (time % 25 == 0 && time >= 7500) {
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
-		}
-
+		}*/
+		
 	}
-
+	public void bossSpawn(){
+		if (time % 50 == 0){
+			boss1.add(new Boss(1000, 300, 100));
+		}
+	}
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -141,7 +145,11 @@ public class Board extends JPanel implements ActionListener {
 				g.drawImage(a.getImage(), a.getX(), a.getY(), this);
 			}
 		}
-
+		for (Boss b : boss1){
+			if(b.isVisible()){
+				g.drawImage(b.getImage(), b.getX(), b.getY(), this);
+			}
+		}
 		String lives = "Lives left: " + this.lives;
 		g.setColor(Color.WHITE);
 		g.drawString("Aliens Killed: " + (score + 1), 5, 15);
@@ -186,7 +194,7 @@ public class Board extends JPanel implements ActionListener {
 		updateCraft();
 		updateMissiles();
 		updateAliens();
-
+		updateBoss();
 		checkCollisions();
 
 		time++;
@@ -266,7 +274,7 @@ public class Board extends JPanel implements ActionListener {
 				}
 
 			}
-			if (a.getX() <= 0) {
+			if (a.getX() == 0) {
 
 				aliens.remove(i);
 
@@ -276,7 +284,29 @@ public class Board extends JPanel implements ActionListener {
 
 		}
 	}
+	private void updateBoss(){
+		for (int i = 0; i < boss1.size(); i++) {
 
+			Boss b = boss1.get(i);
+			if (b.isVisible()) {
+				b.move();
+			} else {
+				b.bossDamage();
+				if (b.getHealth() == 0) {
+					boss1.remove(i);
+				}
+
+			}
+			if (b.getX() == 0) {
+
+				aliens.remove(i);
+
+				lives--;
+				lifeLost = true;
+			}
+
+		}
+	}
 	public void checkCollisions() {
 
 		Rectangle r3 = craft.getBounds();
@@ -286,6 +316,7 @@ public class Board extends JPanel implements ActionListener {
 
 			if (r3.intersects(r2)) {
 				alien.setVisible(false);
+				alien.x = -1000;
 				lives--;
 				lifeLost = true;
 			}
@@ -306,6 +337,7 @@ public class Board extends JPanel implements ActionListener {
 					alien.damage();
 					if (alien.getHealth() == 0) {
 						alien.setVisible(false);
+						alien.x = -1000;
 						score++;
 					}
 
