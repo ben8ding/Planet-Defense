@@ -33,7 +33,7 @@ public class Board extends JPanel implements ActionListener {
 	private boolean lifeLost;
 	private int displayTime = 0;
 	
-	public static int craftNum = 1;
+	public static int craftNum = 2;
 	
 	public Board() {
 
@@ -107,6 +107,10 @@ public class Board extends JPanel implements ActionListener {
 		}
 		if (time % 25 == 0 && time >= 7500) {
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
+		}
+		
+		if (time == 8000) {
+			aliens.add(new Boss3(1000, 250, alienLevel*15));
 		}
 
 		if (time == 10000) {
@@ -182,6 +186,7 @@ public class Board extends JPanel implements ActionListener {
 		g.drawString("Overheat Percent: " + Craft.getOverheat() + '%', 20, 30);
 		g.drawString(lives, 20, 45);
 		g.drawString("Time: " + time + "", 20, 60);
+		g.drawString("Level: "+Craft.getLevel() + "" , 30, 75);
 		g.setColor(new Color (0, 100, 0));
 		g.fillOval(-150, 0, 200, 600);
 		g.setColor(Color.WHITE);

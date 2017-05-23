@@ -128,17 +128,17 @@ public class Craft extends Sprite {
 	public void fire1() {
 		if(Board.craftNum == 1 || Board.craftNum ==  2)
 		{
-		if (level >= 1) {
+		if (getLevel() == 1) {
 			missiles.add(new Missile(x + width, y + height / 2));
 		}
 
-		if (level >= 2) {
+		if (getLevel() >= 2) {
 			missiles.add(new Missile(x + width, y + height / 2 - 15));
 			missiles.add(new Missile(x + width, y + height / 2 + 15));
 			
 			i+= 5;
 		}
-		if (level >= 3) {
+		if (getLevel() >= 3) {
 			missiles.add(new Missile(x + width, y + height / 2));
 			i+=5;
 		}
@@ -147,7 +147,7 @@ public class Craft extends Sprite {
 		
 		if(Board.craftNum == 3)
 		{
-		if (level >= 1) {
+		if (getLevel() >= 1) {
 			
 			missiles.add(new Missile(x + width - 110, y + height / 2 - 39));
 			missiles.add(new Missile(x + width-45, y + height / 2 + 17));
@@ -164,12 +164,12 @@ public class Craft extends Sprite {
 	public void fire2() {
 		if(Board.craftNum == 1||Board.craftNum == 2)
 		{
-		if (level >= 2) {
+		if (getLevel() >= 2) {
 			missiles.add(new Missile3(x + width - 5, y + height / 2 - 10));
 			missiles.add(new Missile2(x + width - 5, y + height / 2 + 10));
 			i += 10;
 		}
-		if (level >= 4) {
+		if (getLevel() >= 4) {
 			missiles.add(new Missile3(x + width - 5, y + height / 2 - 20));
 			missiles.add(new Missile2(x + width - 5, y + height / 2 + 20));
 			i += 10;
@@ -183,7 +183,7 @@ public class Craft extends Sprite {
 			missiles.add(new Missile2(x + width - 5, y + height / 2 + 10));
 			i += 10;
 		
-		if (level >= 2) {
+		if (getLevel() >= 2) {
 			missiles.add(new Missile3(x + width - 5, y + height / 2 - 20));
 			missiles.add(new Missile2(x + width - 5, y + height / 2 + 20));
 			i += 10;
@@ -220,5 +220,9 @@ public class Craft extends Sprite {
 
 	public static void setLevel(int x) {
 		level = x;
+	}
+
+	public static int getLevel() {
+		return level;
 	}
 }

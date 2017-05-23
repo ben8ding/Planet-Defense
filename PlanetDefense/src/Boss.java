@@ -19,7 +19,7 @@ public class Boss extends Alien {
 
     private void initAlien() {
 
-        loadImage("boss1.gif");
+        loadImage("boss2.gif");
         getImageDimensions();
     }
     
