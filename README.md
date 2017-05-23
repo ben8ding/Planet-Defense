@@ -1,7 +1,7 @@
 Header
 5-1-17
 Benjamin Ding
-Nathanial Lao
+Nathaniel Lao
 
 Planet Defense is a retro style 2D side veiw space shooter developed as a simple and clean java project. Its intended purpose is to produce a simple, yet 
 satisfying and challenging reaction based video game, with the target audience of ages 6-18. The program faetures a 2 axial control plane for the player craft.
@@ -26,7 +26,7 @@ Craft2: A different craft thats faster but has less health.
 Alien: Extension of sprite for alien craft.
 Missile: Extension of sprite for player projectile.
 
-Ben: Founder, Design Director, Technical Supervisor, Cheif Intelligence Officer, Planning and Coordination Head
+Ben: Founder, Design Director, Technical Supervisor, Chief Intelligence Officer, Planning and Coordination Head
 Nathan: Co-founder, UI Managment, Balancing Director, Debugger
 
 
