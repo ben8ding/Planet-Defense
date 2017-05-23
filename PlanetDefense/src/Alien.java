@@ -20,7 +20,7 @@ public class Alien extends Sprite {
 
     private void initAlien() {
 
-        loadImage("alien.png");
+        loadImage("craft2.gif");
         getImageDimensions();
     }
     

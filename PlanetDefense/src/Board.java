@@ -17,7 +17,7 @@ public class Board extends JPanel implements ActionListener {
 
 	public Timer timer;
 	private Craft craft;
-	private ArrayList<Boss> boss1;
+	
 	private ArrayList<Alien> aliens;
 	private static boolean ingame;
 	private final int ICRAFT_X = 40;
@@ -27,11 +27,14 @@ public class Board extends JPanel implements ActionListener {
 	private final int DELAY = 15;
 	private int time;
 	private int score = -1;
-	private static int lives = 5;
+	private static int lives;
 	public static boolean isPause = false;
 	private int alienLevel = 1;
 	private boolean lifeLost;
 	private int displayTime = 0;
+	
+	public static int craftNum = 1;
+	
 	public Board() {
 
 		initBoard();
@@ -46,8 +49,26 @@ public class Board extends JPanel implements ActionListener {
 
 		setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
 
+		
+		
+		if(craftNum == 1)
+		{
 		craft = new Craft(ICRAFT_X, ICRAFT_Y);
-
+		lives = 5;
+		}
+		
+		if(craftNum == 2)
+		{
+		craft = new Craft2(ICRAFT_X, ICRAFT_Y);
+		lives = 4;
+		}
+		
+		if(craftNum == 3)
+		{
+		craft = new Craft3(ICRAFT_X, ICRAFT_Y);
+		lives = 7;
+		}
+		
 		initAliens();
 
 		timer = new Timer(DELAY, this);
@@ -61,28 +82,41 @@ public class Board extends JPanel implements ActionListener {
 
 	}
 
-	public void initBosss() {
-		boss1 = new ArrayList<>();
-
-		spawn();
-
-	}
+	
 
 	public void spawn() {
+		
+		
+		if (time == 0000) {
+			//aliens.add(new Boss2(1000, 250, alienLevel*30));
+		}
 
 		if (time % 50 == 0) {
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
+		
+		if (time == 5000) {
+			aliens.add(new Boss(1000, 300, alienLevel*10));
+		}
+		
 		if ((time - 33) % 50 == 0 && time >= 2500) {
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
-		if (time % 38 == 0 && time >= 5000) {
-			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
+		if (time >= 5200) {
+			alienLevel++;
 		}
 		if (time % 25 == 0 && time >= 7500) {
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
 
+		if (time == 10000) {
+			aliens.add(new Boss2(1000, 300, alienLevel*20));
+		}
+		
+		if (time >= 10200) {
+			alienLevel++;
+		}
+		
 	}
 
 	@Override
@@ -144,10 +178,10 @@ public class Board extends JPanel implements ActionListener {
 
 		String lives = "Lives left: " + this.lives;
 		g.setColor(Color.WHITE);
-		g.drawString("Aliens Killed: " + (score + 1), 5, 15);
-		g.drawString("Overheat Percent: " + Craft.getOverheat() + '%', 5, 30);
-		g.drawString(lives, 5, 45);
-		g.drawString("Time: " + time + "", 5, 60);
+		g.drawString("Aliens Killed: " + (score + 1), 20, 15);
+		g.drawString("Overheat Percent: " + Craft.getOverheat() + '%', 20, 30);
+		g.drawString(lives, 20, 45);
+		g.drawString("Time: " + time + "", 20, 60);
 		g.setColor(new Color (0, 100, 0));
 		g.fillOval(-150, 0, 200, 600);
 		g.setColor(Color.WHITE);
@@ -260,12 +294,13 @@ public class Board extends JPanel implements ActionListener {
 			if (a.isVisible()) {
 				a.move();
 			} else {
-				a.damage();
-				if (a.getHealth() == 0) {
+				
 					aliens.remove(i);
-				}
+				
 
 			}
+			
+			
 			if (a.getX() <= 0) {
 
 				aliens.remove(i);
@@ -304,15 +339,21 @@ public class Board extends JPanel implements ActionListener {
 				if (r1.intersects(r2)) {
 					m.setVisible(false);
 					alien.damage();
-					if (alien.getHealth() == 0) {
+					if (alien.getHealth() <= 0) {
 						alien.setVisible(false);
 						score++;
+						alien.x = 4000;
 					}
+					
 
-				}
+					
 			}
+				
+		
+			
+				
 		}
-
+		}
 	}
 
 	public static void setIngame(boolean set) {
@@ -336,7 +377,7 @@ public class Board extends JPanel implements ActionListener {
 
 		Alien.speed = 2;
 		Missile.MISSILE_SPEED = 10;
-		Craft.cs = 5;
+		Craft.cs = Craft.tcs;
 		isPause = false;
 
 	}

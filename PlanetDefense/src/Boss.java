@@ -1,33 +1,32 @@
+import java.util.ArrayList;
 
 public class Boss extends Alien {
-	private int time = 100;
-	private int y = 150;
-	private static int speed = 1;
-	private static int health = 100;
 
-	public Boss(int x, int y, int health) {
-		super(x, y, health);
-		this.health = health;
-		
-		vis = true;
-		initBoss();
-	}
 
-	private void initBoss() {
+   
+	
+	public static int speed = 1;
+	
+	
+    
+    public Boss(int x, int y, int health) {
+        super(x, y, health);
 
-		loadImage("alien.png");
-		getImageDimensions();
-	}
+       
+        
+        initAlien();
+    }
 
-	public static void bossDamage() {
-		health--;
-	}
+    private void initAlien() {
 
-	public void move() {
-		x -= speed;
-	}
+        loadImage("boss1.gif");
+        getImageDimensions();
+    }
+    
+   
+    
 
-	public static void setSpeed() {
-		speed = 1;
-	}
+    public void move() {
+        x -= speed;
+    }
 }

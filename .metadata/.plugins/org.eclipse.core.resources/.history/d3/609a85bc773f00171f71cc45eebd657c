@@ -1,0 +1,30 @@
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+
+public class Craft2 extends Craft {
+
+	private int dx;
+	private int dy;
+	private int dx2;
+	private int dy2;
+	public static int cs = 5;
+	private static int level = 1;
+	public static int i = 0;
+	public static int pState = 0;
+	private ArrayList<Missile> missiles;
+
+	public Craft2(int x, int y) {
+		super(x, y);
+
+		initCraft();
+	}
+
+	private void initCraft() {
+
+		missiles = new ArrayList<>();
+		loadImage("craft3.gif");
+		getImageDimensions();
+	}
+
+	
+}

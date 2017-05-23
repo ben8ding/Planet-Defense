@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+
+public class Boss extends Alien {
+
+
+   
+	
+	public static int speed = 1;
+	
+	
+    
+    public Boss(int x, int y, int health) {
+        super(x, y, health);
+
+       
+        
+        initAlien();
+    }
+
+    private void initAlien() {
+
+        loadImage("alien.png");
+        getImageDimensions();
+    }
+    
+    public int getHealth(){
+    	return health;
+    }
+    
+    public void damage(){
+    	health--;
+    }
+    
+
+    public void move() {
+        x -= speed;
+    }
+}
