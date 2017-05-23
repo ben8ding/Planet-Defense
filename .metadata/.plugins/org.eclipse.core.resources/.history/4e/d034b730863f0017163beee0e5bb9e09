@@ -26,7 +26,7 @@ public class Boss2 extends Alien {
 
     public void move() {
     i++;
-    	if(i>=4)
+    	if(i>=2)
     	{
     	x -= speed;
     	}

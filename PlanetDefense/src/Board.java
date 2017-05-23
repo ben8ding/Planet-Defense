@@ -88,11 +88,11 @@ public class Board extends JPanel implements ActionListener {
 		
 		
 		if (time == 0000) {
-			//aliens.add(new Boss2(1000, 250, alienLevel*30));
+			aliens.add(new Boss2(1000, 250, alienLevel*40));
 		}
 
 		if (time % 50 == 0) {
-			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
+			//aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
 		
 		if (time == 5000) {

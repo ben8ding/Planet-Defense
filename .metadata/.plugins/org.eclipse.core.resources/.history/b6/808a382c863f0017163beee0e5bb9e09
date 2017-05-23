@@ -4,7 +4,7 @@ public class Boss2 extends Alien {
    
 	
 	public static int speed = 1;
-	int i = 0;
+	
 	
     
     public Boss2(int x, int y, int health) {
@@ -25,10 +25,6 @@ public class Boss2 extends Alien {
     
 
     public void move() {
-    i++;
-    	if(i>=4)
-    	{
-    	x -= speed;
-    	}
+        x -= speed;
     }
 }

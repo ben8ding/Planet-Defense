@@ -1,5 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="javadoc">
+		<item value="public" key="access"/>
+		<item value="false" key="noindex"/>
+		<item value="C:\Users\ben8d\Desktop\workspace\PlanetDefense\javadoc.xml" key="antpath"/>
+		<item value="false" key="nodeprecatedlist"/>
+		<item value="true" key="use"/>
+		<item value="true" key="author"/>
+		<item value="false" key="nodeprecated"/>
+		<item value="false" key="nonavbar"/>
+		<item value="" key="docletpath"/>
+		<item value="" key="javadoc_command_history"/>
+		<item value="1.8" key="source"/>
+		<item value="true" key="version"/>
+		<item value="" key="docletname"/>
+		<item value="true" key="splitindex"/>
+		<item value="true" key="fromStandard"/>
+		<item value="false" key="notree"/>
+		<item value="C:\Users\ben8d\Desktop\workspace\PlanetDefense\doc" key="destdir"/>
+		<item value="false" key="openinbrowser"/>
+		<section name="projects">
+		</section>
+	</section>
+	<section name="FatJarPackageWizard">
+		<item value="C:\Users\ben8d\Desktop\workspace" key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION"/>
+		<item value="CollisionEx - PlanetDefense" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
+		<item value="C:\Users\ben8d\Desktop\PlanetDefense.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
+		<item value="false" key="FatJarPackageWizardPage.ANTSCRIPT_SAVE"/>
+		<item value="3" key="FatJarPackageWizardPage.LIBRARY_HANDLING"/>
+		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="C:\Users\ben8d\Desktop\PlanetDefense.jar"/>
+		</list>
+		<list key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION_HISTORY">
+			<item value="C:\Users\ben8d\Desktop\workspace.xml"/>
+			<item value=".xml"/>
+		</list>
+	</section>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item value="2" key="layout"/>
 		<item value="true" key="group_libraries"/>
@@ -17,6 +53,29 @@
 	<section name="quick_assist_proposal_size">
 	</section>
 	<section name="completion_proposal_size">
+	</section>
+	<section name="JarPackageWizard">
+		<item value="false" key="JarPackageWizardPage.INCLUDE_DIRECTORY_ENTRIES"/>
+		<item value="" key="JarManifestWizardPage.MANIFEST_LOCATION"/>
+		<item value="false" key="JarManifestWizardPage.SEAL_JAR"/>
+		<item value="true" key="JarPackageWizardPage.COMPRESS"/>
+		<item value="false" key="JarManifestWizardPage.REUSE_MANIFEST"/>
+		<item value="false" key="jarOptionsWizardPage.STORE_USE_SRC_FOLDERS"/>
+		<item value="true" key="jarOptionsWizardPage.EXPORT_WARNINGS"/>
+		<item value="" key="jarOptionsWizardPage.DESCRIPTION_LOCATION"/>
+		<item value="true" key="jarOptionsWizardPage.BUILD_IF_NEEDED"/>
+		<item value="false" key="JarPackageWizardPage.EXPORT_JAVA_FILES"/>
+		<item value="true" key="jarOptionsWizardPage.EXPORT_ERRORS"/>
+		<item value="true" key="JarManifestWizardPage.GENERATE_MANIFEST"/>
+		<item value="true" key="JarPackageWizardPage.EXPORT_CLASS_FILES"/>
+		<item value="false" key="JarPackageWizardPage.OVERWRITE"/>
+		<item value="false" key="jarOptionsWizardPage.SAVE_DESCRIPTION"/>
+		<item value="false" key="JarPackageWizardPage.REFACTORINGS"/>
+		<item value="false" key="JarManifestWizardPage.SAVE_MANIFEST"/>
+		<item value="false" key="JarPackageWizardPage.EXPORT_OUTPUT_FOLDER"/>
+		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="C:\Users\ben8d\Desktop\PlanetDefense.jar"/>
+		</list>
 	</section>
 	<section name="JavaElementSearchActions">
 	</section>
