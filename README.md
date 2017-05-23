@@ -9,24 +9,25 @@ It also includes randomly generated enemies that provide the challenge the playe
 
 Instructions
 Upon opening the game, you may either begin the game directly, or access the Help Window to acclimate yourself with the controls. 
+
 Controls
-Arrow keys allow you to move intuitively
-Z will allow you to fire your primary weapon. Beware, using it too much will caus you to overheat
+Arrow keys allow you to move intuitively.
+Z will allow you to fire your primary weapon. Beware, using it too much will caus you to overheat.
 X will allow you to access your alternate fire. You will be able to access this upon reaching level 2.
 Escape will allow you to pause the game. Press escape again to resume.
 
-CollisonEx: generates Jframe
-Board: Initializes objects, checkes collisions, sets board size
-Boss: Extension of Alien for boss
-Boss2: Like Boss but bigger and harder to kill
-Sprite: Abstract class for all objects
-Craft: Extension of sprite for player craft
-Craft2: A different craft thats faster but has less health
-Alien: Extension of sprite for alien craft
-Missile: Extension of sprite for player projectile
+CollisonEx: generates Jframe.
+Board: Initializes objects, checkes collisions, sets board size.
+Boss: Extension of Alien for boss.
+Boss2: Like Boss but bigger and harder to kill.
+Sprite: Abstract class for all objects.
+Craft: Extension of sprite for player craft.
+Craft2: A different craft thats faster but has less health.
+Alien: Extension of sprite for alien craft.
+Missile: Extension of sprite for player projectile.
 
-Ben: Founder, Design Director, Debugger, Technical Supervisor, Cheif Intelligence Officer, Planning and Coordination Head
-Nathan: Co-founder, UI Managment, Balancing Director, Debugger, 
+Ben: Founder, Design Director, Technical Supervisor, Cheif Intelligence Officer, Planning and Coordination Head
+Nathan: Co-founder, UI Managment, Balancing Director, Debugger
 
 
 
