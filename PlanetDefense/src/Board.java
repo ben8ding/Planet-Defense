@@ -33,7 +33,7 @@ public class Board extends JPanel implements ActionListener {
 	private boolean lifeLost;
 	private int displayTime = 0;
 	
-	public static int craftNum = 2;
+	public static int craftNum = 1;
 	
 	public Board() {
 
@@ -88,11 +88,11 @@ public class Board extends JPanel implements ActionListener {
 		
 		
 		if (time == 0000) {
-			aliens.add(new Boss2(1000, 250, alienLevel*40));
+		//	aliens.add(new Boss2(1000, 250, alienLevel*75));
 		}
 
 		if (time % 50 == 0) {
-			//aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
+			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
 		
 		if (time == 5000) {
@@ -114,7 +114,7 @@ public class Board extends JPanel implements ActionListener {
 		}
 
 		if (time == 10000) {
-			aliens.add(new Boss2(1000, 300, alienLevel*20));
+			aliens.add(new Boss2(1000, 300, alienLevel*100));
 		}
 		
 		if (time >= 10200) {
@@ -159,7 +159,7 @@ public class Board extends JPanel implements ActionListener {
 		g.drawString("Life Lost!", craft.getX(),craft.getY());
 		
 	}
-
+	
 	private void drawObjects(Graphics g) {
 
 		if (craft.isVisible()) {
@@ -190,6 +190,10 @@ public class Board extends JPanel implements ActionListener {
 		g.setColor(new Color (0, 100, 0));
 		g.fillOval(-150, 0, 200, 600);
 		g.setColor(Color.WHITE);
+		if (time > 4800 && time < 5000 || (time > 7800 && time < 8000) || (time > 9800 && time < 10000)){
+			 		g.setFont(new Font(Font.DIALOG, Font.BOLD, 40));
+			 	g.drawString("Boss Alert!", B_WIDTH /2 - 50, 100);
+			 	}
 	}
 
 	private void drawGameOver(Graphics g) {
@@ -216,7 +220,6 @@ public class Board extends JPanel implements ActionListener {
 		g.drawString("Game Paused", (B_WIDTH - fm.stringWidth("Game Paused")) / 2, B_HEIGHT / 2 - 20);
 		g.drawString("Press ESC to unpause", (B_WIDTH - fm.stringWidth("Press ESC to unpause")) / 2, B_HEIGHT / 2 + 15);
 	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -255,7 +258,7 @@ public class Board extends JPanel implements ActionListener {
 		while (Craft.i < 0) {
 			Craft.i = 0;
 		}
-		if (lives == 0) {
+		if (lives <= 0) {
 			ingame = false;
 		}
 	}
@@ -326,7 +329,7 @@ public class Board extends JPanel implements ActionListener {
 
 			if (r3.intersects(r2)) {
 				alien.setVisible(false);
-				lives--;
+				lives-= alien.getHealth();
 				lifeLost = true;
 			}
 		}
@@ -372,6 +375,10 @@ public class Board extends JPanel implements ActionListener {
 	public static void pause() {
 
 		Alien.speed = 0;
+		Boss.speed = 0;
+		Boss2.speed = 0;
+		Boss3.speed = 0;
+		
 		Missile.MISSILE_SPEED = 0;
 		Craft.cs = 0;
 		isPause = true;

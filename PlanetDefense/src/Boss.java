@@ -6,6 +6,7 @@ public class Boss extends Alien {
    
 	
 	public static int speed = 1;
+	public static final int tSpeed = 1;
 	
 	
     

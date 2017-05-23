@@ -9,8 +9,7 @@ public class Craft3 extends Craft {
 	private int dy2;
 	public final static int tcs = 4;
 	public static int cs = 2;
-	private static int level = 1;
-	public static int i = 0;
+	
 	public static int pState = 0;
 	private ArrayList<Missile> missiles;
 
@@ -76,12 +75,12 @@ public class Craft3 extends Craft {
 
 		int key = e.getKeyCode();
 
-		if (key == KeyEvent.VK_Z && key != KeyEvent.VK_X) {
+		if (key == KeyEvent.VK_Z && key != KeyEvent.VK_X&& i <= 90) {
 			fire1();
 
 		}
 
-		if (key == KeyEvent.VK_X && key != KeyEvent.VK_Z) {
+		if (key == KeyEvent.VK_X && key != KeyEvent.VK_Z&& i <= 90) {
 			fire2();
 
 		}

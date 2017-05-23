@@ -81,12 +81,12 @@ public class Craft extends Sprite {
 
 		int key = e.getKeyCode();
 
-		if (key == KeyEvent.VK_Z && key != KeyEvent.VK_X) {
+		if (key == KeyEvent.VK_Z && key != KeyEvent.VK_X && i <= 90) {
 			fire1();
 
 		}
 
-		if (key == KeyEvent.VK_X && key != KeyEvent.VK_Z) {
+		if (key == KeyEvent.VK_X && key != KeyEvent.VK_Z&& i <= 90) {
 			fire2();
 
 		}
