@@ -25,13 +25,14 @@ public class Board extends JPanel implements ActionListener {
 	private final static int B_WIDTH = 1000;
 	private final static int B_HEIGHT = 600;
 	private final int DELAY = 15;
-	private int time;
+	private int time = 5799;
 	private int score = -1;
 	private static int lives = 5;
 	public static boolean isPause = false;
 	private int alienLevel = 1;
 	private boolean lifeLost;
 	private int displayTime = 0;
+
 	public Board() {
 
 		initBoard();
@@ -70,25 +71,27 @@ public class Board extends JPanel implements ActionListener {
 
 	public void spawn() {
 
-		/*if (time % 50 == 0) {
+		if (time % 50 == 0) {
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
 		if ((time - 33) % 50 == 0 && time >= 2500) {
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
-		if (time % 38 == 0 && time >= 5000) {
+		if (time % 50 == 0 && time >= 5000) {
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
 		if (time % 25 == 0 && time >= 7500) {
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
-		}*/
-		
+		}
+
 	}
-	public void bossSpawn(){
-		if (time % 50 == 0){
-			boss1.add(new Boss(1000, 300, 100));
+
+	public void bossSpawn() {
+		if (time == 6000) {
+			boss1.add(new Boss(1000, 300, 50));
 		}
 	}
+
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -100,15 +103,15 @@ public class Board extends JPanel implements ActionListener {
 		} else {
 			lifeLost = false;
 			drawGameOver(g);
-			
+
 		}
 		if (isPause) {
 			drawPause(g);
 		}
 		if (lifeLost) {
 			drawLifeLost(g);
-			displayTime+=5;
-			if (displayTime == 100){
+			displayTime += 5;
+			if (displayTime == 100) {
 				lifeLost = false;
 				displayTime = 0;
 			}
@@ -117,13 +120,13 @@ public class Board extends JPanel implements ActionListener {
 		Toolkit.getDefaultToolkit().sync();
 	}
 
-	private void drawLifeLost(Graphics g){
+	private void drawLifeLost(Graphics g) {
 		Font small = new Font("Helvetica", Font.BOLD, 14);
 		FontMetrics fm = getFontMetrics(small);
 		g.setFont(small);
 		g.setColor(Color.WHITE);
-		g.drawString("Life Lost!", craft.getX(),craft.getY());
-		
+		g.drawString("Life Lost!", craft.getX(), craft.getY());
+
 	}
 
 	private void drawObjects(Graphics g) {
@@ -159,6 +162,9 @@ public class Board extends JPanel implements ActionListener {
 		g.setColor(new Color (0, 100, 0));
 		g.fillOval(-150, 0, 200, 600);
 		g.setColor(Color.WHITE);
+		if (time > 5800 && time < 6000){
+			g.drawString("Boss Alert", B_WIDTH /2, 100);
+		}
 	}
 
 	private void drawGameOver(Graphics g) {
@@ -284,7 +290,8 @@ public class Board extends JPanel implements ActionListener {
 
 		}
 	}
-	private void updateBoss(){
+
+	private void updateBoss() {
 		for (int i = 0; i < boss1.size(); i++) {
 
 			Boss b = boss1.get(i);
@@ -307,6 +314,7 @@ public class Board extends JPanel implements ActionListener {
 
 		}
 	}
+
 	public void checkCollisions() {
 
 		Rectangle r3 = craft.getBounds();

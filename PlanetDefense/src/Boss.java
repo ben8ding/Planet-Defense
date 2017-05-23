@@ -24,7 +24,6 @@ public class Boss extends Sprite {
 	public void move() {
 		
 		bossMoveTimer++;
-		System.out.println(bossMoveTimer);
 		if (bossMoveTimer % 10 == 0)
 		x-=speed;
 		
