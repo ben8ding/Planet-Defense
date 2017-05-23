@@ -88,21 +88,25 @@ public class Board extends JPanel implements ActionListener {
 		
 		
 		if (time == 0000) {
-		//	aliens.add(new Boss2(1000, 250, alienLevel*75));
+			//aliens.add(new Boss4(1000, 250, alienLevel*75));
 		}
 
 		if (time % 50 == 0) {
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
 		
+		if (time == 2500) {
+			aliens.add(new Boss(1000, 300, alienLevel*20));
+		}
+		
 		if (time == 5000) {
-			aliens.add(new Boss(1000, 300, alienLevel*10));
+			aliens.add(new Boss(1000, 300, alienLevel*25));
 		}
 		
 		if ((time - 33) % 50 == 0 && time >= 2500) {
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
-		if (time >= 5200) {
+		if (time >= 2520) {
 			alienLevel++;
 		}
 		if (time % 25 == 0 && time >= 7500) {
@@ -114,7 +118,7 @@ public class Board extends JPanel implements ActionListener {
 		}
 
 		if (time == 10000) {
-			aliens.add(new Boss2(1000, 300, alienLevel*100));
+			aliens.add(new Boss4(1000, 300, alienLevel*100));
 		}
 		
 		if (time >= 10200) {
@@ -190,7 +194,7 @@ public class Board extends JPanel implements ActionListener {
 		g.setColor(new Color (0, 100, 0));
 		g.fillOval(-150, 0, 200, 600);
 		g.setColor(Color.WHITE);
-		if (time > 4800 && time < 5000 || (time > 7800 && time < 8000) || (time > 9800 && time < 10000)){
+		if (time > 4800 && time < 5000|| time > 2300 && time < 2500 || (time > 7800 && time < 8000) || (time > 9800 && time < 10000)){
 			 		g.setFont(new Font(Font.DIALOG, Font.BOLD, 40));
 			 	g.drawString("Boss Alert!", B_WIDTH /2 - 50, 100);
 			 	}
@@ -349,7 +353,7 @@ public class Board extends JPanel implements ActionListener {
 					alien.damage();
 					if (alien.getHealth() <= 0) {
 						alien.setVisible(false);
-						score++;
+						score+=alien.getmHealth();
 						alien.x = 4000;
 					}
 					

@@ -29,10 +29,12 @@
 	<section name="FatJarPackageWizard">
 		<item value="C:\Users\ben8d\Desktop\workspace" key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION"/>
 		<item value="CollisionEx - PlanetDefense" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
-		<item value="C:\Users\ben8d\Desktop\PlanetDefense.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
+		<item value="PlanetDefense\PlanetDefenseGame.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
 		<item value="false" key="FatJarPackageWizardPage.ANTSCRIPT_SAVE"/>
 		<item value="1" key="FatJarPackageWizardPage.LIBRARY_HANDLING"/>
 		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="PlanetDefense/PlanetDefenseGame.jar"/>
+			<item value="C:\Users\ben8d\Desktop\PlanetDefense\PlanetDefense.jar"/>
 			<item value="C:\Users\ben8d\Desktop\PlanetDefense.jar"/>
 		</list>
 		<list key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION_HISTORY">
@@ -58,6 +60,12 @@
 		<item value="true" key="org.eclipse.jdt.ui.typecomment.deprecated"/>
 	</section>
 	<section name="quick_assist_proposal_size">
+	</section>
+	<section name="org.eclipse.jdt.internal.ui.typehierarchy.QuickHierarchy">
+		<item value="true" key="org.eclipse.jdt.internal.ui.typehierarchy.HierarchyInformationControlDIALOG_USE_PERSISTED_SIZE"/>
+		<item value="306" key="org.eclipse.jdt.internal.ui.typehierarchy.HierarchyInformationControlDIALOG_HEIGHT"/>
+		<item value="350" key="org.eclipse.jdt.internal.ui.typehierarchy.HierarchyInformationControlDIALOG_WIDTH"/>
+		<item value="false" key="org.eclipse.jdt.internal.ui.typehierarchy.HierarchyInformationControlDIALOG_USE_PERSISTED_LOCATION"/>
 	</section>
 	<section name="completion_proposal_size">
 	</section>

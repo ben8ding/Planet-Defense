@@ -38,9 +38,4 @@ public class Alien extends Sprite {
     public void move() {
         x -= speed;
     }
-
-	public int getmHealth() {
-		// TODO Auto-generated method stub
-		return mHealth;
-	}
 }

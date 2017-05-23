@@ -1,15 +1,14 @@
-public class Boss2 extends Alien {
+public class Boss4 extends Alien {
 
 
    
 	
 	public static int speed = 1;
 	public static final int tSpeed = 1;
-	int i = 0;
+	public int i = 0;
 	private int mHealth;
-	
     
-    public Boss2(int x, int y, int health) {
+    public Boss4(int x, int y, int health) {
         super(x, y, health);
         this.mHealth = health;
        
@@ -19,7 +18,7 @@ public class Boss2 extends Alien {
 
     private void initAlien() {
 
-        loadImage("boss1.gif");
+        loadImage("boss4.gif");
         getImageDimensions();
     }
     
@@ -27,11 +26,11 @@ public class Boss2 extends Alien {
     
 
     public void move() {
-    i++;
-    	if(i>=2)
-    	{
-    	x -= speed;
-    	i=0;
-    	}
-    }
+        i++;
+        	if(i>=4)
+        	{
+        	x -= speed;
+        	i=0;
+        	}
+        }
 }
