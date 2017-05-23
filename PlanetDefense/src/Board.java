@@ -32,13 +32,9 @@ public class Board extends JPanel implements ActionListener {
 	private int alienLevel = 1;
 	private boolean lifeLost;
 	private int displayTime = 0;
-<<<<<<< HEAD
 	
 	public static int craftNum = 1;
 	
-=======
-
->>>>>>> master
 	public Board() {
 
 		initBoard();
@@ -74,7 +70,7 @@ public class Board extends JPanel implements ActionListener {
 		}
 		
 		initAliens();
-		initBoss();
+
 		timer = new Timer(DELAY, this);
 		timer.start();
 	}
@@ -86,16 +82,7 @@ public class Board extends JPanel implements ActionListener {
 
 	}
 
-<<<<<<< HEAD
 	
-=======
-	public void initBoss() {
-		boss1 = new ArrayList<>();
-
-		bossSpawn();
-
-	}
->>>>>>> master
 
 	public void spawn() {
 		
@@ -104,10 +91,9 @@ public class Board extends JPanel implements ActionListener {
 			//aliens.add(new Boss2(1000, 250, alienLevel*30));
 		}
 
-		if (time % 50 == 0 && (time < 5800 || time >= 6500)) {
+		if (time % 50 == 0) {
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
-<<<<<<< HEAD
 		
 		if (time == 5000) {
 			aliens.add(new Boss(1000, 300, alienLevel*10));
@@ -118,38 +104,19 @@ public class Board extends JPanel implements ActionListener {
 		}
 		if (time >= 5200) {
 			alienLevel++;
-=======
-		if ((time - 33) % 100 == 0 && time >= 2500) {
-			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
-		if (time % 75  == 0 && time >= 5000 && (time < 5800 || time >= 7000)) {
-			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
->>>>>>> master
-		}
-		if (time % 38 == 0 && time >= 7500) {
-			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
-		}
-		if (time % 25 == 0 && time >= 10000){
+		if (time % 25 == 0 && time >= 7500) {
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
 
-	}
-
-<<<<<<< HEAD
 		if (time == 10000) {
-			aliens.add(new Boss2(1000, 300, alienLevel*25));
+			aliens.add(new Boss2(1000, 300, alienLevel*20));
 		}
 		
 		if (time >= 10200) {
 			alienLevel++;
 		}
 		
-=======
-	public void bossSpawn() {
-		if (time % 6000 == 0) {
-			boss1.add(new Boss(1000, 300, 100));
-		}
->>>>>>> master
 	}
 
 	@Override
@@ -163,15 +130,15 @@ public class Board extends JPanel implements ActionListener {
 		} else {
 			lifeLost = false;
 			drawGameOver(g);
-
+			
 		}
 		if (isPause) {
 			drawPause(g);
 		}
 		if (lifeLost) {
 			drawLifeLost(g);
-			displayTime += 5;
-			if (displayTime == 100) {
+			displayTime+=5;
+			if (displayTime == 100){
 				lifeLost = false;
 				displayTime = 0;
 			}
@@ -180,13 +147,13 @@ public class Board extends JPanel implements ActionListener {
 		Toolkit.getDefaultToolkit().sync();
 	}
 
-	private void drawLifeLost(Graphics g) {
+	private void drawLifeLost(Graphics g){
 		Font small = new Font("Helvetica", Font.BOLD, 14);
 		FontMetrics fm = getFontMetrics(small);
 		g.setFont(small);
 		g.setColor(Color.WHITE);
-		g.drawString("Life Lost!", craft.getX(), craft.getY());
-
+		g.drawString("Life Lost!", craft.getX(),craft.getY());
+		
 	}
 
 	private void drawObjects(Graphics g) {
@@ -208,11 +175,7 @@ public class Board extends JPanel implements ActionListener {
 				g.drawImage(a.getImage(), a.getX(), a.getY(), this);
 			}
 		}
-		for (Boss b : boss1){
-			if(b.isVisible()){
-				g.drawImage(b.getImage(), b.getX(), b.getY(), this);
-			}
-		}
+
 		String lives = "Lives left: " + this.lives;
 		g.setColor(Color.WHITE);
 		g.drawString("Aliens Killed: " + (score + 1), 20, 15);
@@ -222,10 +185,6 @@ public class Board extends JPanel implements ActionListener {
 		g.setColor(new Color (0, 100, 0));
 		g.fillOval(-150, 0, 200, 600);
 		g.setColor(Color.WHITE);
-		if (time > 5800 && time < 6000 || time > 11800 && time < 12000){
-			g.setFont(new Font(Font.DIALOG, Font.BOLD, 40));
-			g.drawString("Boss Alert!", B_WIDTH /2 - 50, 100);
-		}
 	}
 
 	private void drawGameOver(Graphics g) {
@@ -261,7 +220,7 @@ public class Board extends JPanel implements ActionListener {
 		updateCraft();
 		updateMissiles();
 		updateAliens();
-		updateBoss();
+
 		checkCollisions();
 
 		time++;
@@ -277,12 +236,15 @@ public class Board extends JPanel implements ActionListener {
 			alienLevel = 3;
 		}
 
+		if (score + 1 >= 300) {
+			time = 0;
+		}
+
 		if (isPause) {
 			Craft.pState++;
 		}
 
 		spawn();
-		bossSpawn();
 		repaint();
 		Craft.i--;
 		while (Craft.i < 0) {
@@ -337,37 +299,9 @@ public class Board extends JPanel implements ActionListener {
 				
 
 			}
-<<<<<<< HEAD
 			
 			
 			if (a.getX() <= 0) {
-=======
-			if (a.getX() == 0) {
-
-				aliens.remove(i);
-
-				lives--;
-				lifeLost = true;
-			}
-
-		}
-	}
-
-	private void updateBoss() {
-		for (int i = 0; i < boss1.size(); i++) {
-
-			Boss b = boss1.get(i);
-			if (b.isVisible()) {
-				b.move();
-			} else {
-				b.bossDamage();
-				if (b.getHealth() == 0) {
-					boss1.remove(i);
-				}
-
-			}
-			if (b.getX() == 0) {
->>>>>>> master
 
 				aliens.remove(i);
 
@@ -381,25 +315,17 @@ public class Board extends JPanel implements ActionListener {
 	public void checkCollisions() {
 
 		Rectangle r3 = craft.getBounds();
-		
+
 		for (Alien alien : aliens) {
 			Rectangle r2 = alien.getBounds();
 
 			if (r3.intersects(r2)) {
 				alien.setVisible(false);
-				alien.x = -1000;
 				lives--;
 				lifeLost = true;
 			}
 		}
-		for (Boss b : boss1){
-			Rectangle r4 = b.getBounds();
-				
-			if (r4.intersects(r3)){
-				b.setVisible(false);
-				lives = 0;
-			}
-		}
+
 		ArrayList<Missile> ms = craft.getMissiles();
 
 		for (Missile m : ms) {
@@ -415,7 +341,6 @@ public class Board extends JPanel implements ActionListener {
 					alien.damage();
 					if (alien.getHealth() <= 0) {
 						alien.setVisible(false);
-						alien.x = -1000;
 						score++;
 						alien.x = 4000;
 					}
@@ -423,26 +348,10 @@ public class Board extends JPanel implements ActionListener {
 
 					
 			}
-<<<<<<< HEAD
 				
 		
 			
 				
-=======
-		for (Boss b : boss1){
-			
-			Rectangle r4 = b.getBounds();
-			
-			if (r1.intersects(r4)){
-				m.setVisible(false);
-				b.bossDamage();
-				if (b.getHealth() == 0){
-					b.setVisible(false);
-					b.x = -1000;
-					score += 500;
-				}
-			}
->>>>>>> master
 		}
 		}
 	}

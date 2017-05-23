@@ -3,9 +3,12 @@ import java.util.ArrayList;
 public class Alien extends Sprite {
 
 
+    private int time = 100;
+	private int y = 150;
 	private int health;
 	public static int speed = 2;
 	
+	private ArrayList<Missile> aliens;
     
     public Alien(int x, int y, int health) {
         super(x, y);
