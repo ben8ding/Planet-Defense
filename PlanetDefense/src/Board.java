@@ -71,24 +71,24 @@ public class Board extends JPanel implements ActionListener {
 
 	public void spawn() {
 
-		if (time % 50 == 0) {
+		if (time % 50 == 0 && (time < 5800 || time >= 6500)) {
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
-		if ((time - 33) % 50 == 0 && time >= 2500) {
+		if ((time - 33) % 100 == 0 && time >= 2500) {
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
-		if (time % 50 == 0 && time >= 5000) {
+		if (time % 75  == 0 && time >= 5000 && (time < 5800 || time >= 6800)) {
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
-		if (time % 25 == 0 && time >= 7500) {
+		if (time % 38 == 0 && time >= 7500) {
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
 
 	}
 
 	public void bossSpawn() {
-		if (time == 6000) {
-			boss1.add(new Boss(1000, 300, 50));
+		if (time % 6000 == 0) {
+			boss1.add(new Boss(1000, 300, 100));
 		}
 	}
 
@@ -162,8 +162,9 @@ public class Board extends JPanel implements ActionListener {
 		g.setColor(new Color (0, 100, 0));
 		g.fillOval(-150, 0, 200, 600);
 		g.setColor(Color.WHITE);
-		if (time > 5800 && time < 6000){
-			g.drawString("Boss Alert", B_WIDTH /2, 100);
+		if (time > 5800 && time < 6000 || time > 11800 && time < 12000){
+			g.setFont(new Font(Font.DIALOG, Font.BOLD, 40));
+			g.drawString("Boss Alert!", B_WIDTH /2 - 50, 100);
 		}
 	}
 
@@ -216,15 +217,12 @@ public class Board extends JPanel implements ActionListener {
 			alienLevel = 3;
 		}
 
-		if (score + 1 >= 300) {
-			time = 0;
-		}
-
 		if (isPause) {
 			Craft.pState++;
 		}
 
 		spawn();
+		bossSpawn();
 		repaint();
 		Craft.i--;
 		while (Craft.i < 0) {
@@ -318,7 +316,7 @@ public class Board extends JPanel implements ActionListener {
 	public void checkCollisions() {
 
 		Rectangle r3 = craft.getBounds();
-
+		
 		for (Alien alien : aliens) {
 			Rectangle r2 = alien.getBounds();
 
@@ -329,7 +327,14 @@ public class Board extends JPanel implements ActionListener {
 				lifeLost = true;
 			}
 		}
-
+		for (Boss b : boss1){
+			Rectangle r4 = b.getBounds();
+				
+			if (r4.intersects(r3)){
+				b.setVisible(false);
+				lives = 0;
+			}
+		}
 		ArrayList<Missile> ms = craft.getMissiles();
 
 		for (Missile m : ms) {
@@ -351,8 +356,21 @@ public class Board extends JPanel implements ActionListener {
 
 				}
 			}
+		for (Boss b : boss1){
+			
+			Rectangle r4 = b.getBounds();
+			
+			if (r1.intersects(r4)){
+				m.setVisible(false);
+				b.bossDamage();
+				if (b.getHealth() == 0){
+					b.setVisible(false);
+					b.x = -1000;
+					score += 500;
+				}
+			}
 		}
-
+		}
 	}
 
 	public static void setIngame(boolean set) {

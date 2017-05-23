@@ -13,7 +13,7 @@ public class Boss extends Sprite {
 
 	private void initBoss() {
 
-		loadImage("alien.png");
+		loadImage("boss.png");
 		getImageDimensions();
 	}
 
@@ -24,7 +24,7 @@ public class Boss extends Sprite {
 	public void move() {
 		
 		bossMoveTimer++;
-		if (bossMoveTimer % 10 == 0)
+		if (bossMoveTimer % 3 == 0)
 		x-=speed;
 		
 	}
