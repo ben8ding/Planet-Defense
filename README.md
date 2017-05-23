@@ -26,6 +26,7 @@ Alien: Extension of sprite for alien craft.
 Missile: Extension of sprite for player projectile.
 
 Ben: Founder, Design Director, Technical Supervisor, Chief Intelligence Officer, Planning and Coordination Head
+
 Nathan: Co-founder, UI Managment, Balancing Director, Debugger, Proofreader
 
 
