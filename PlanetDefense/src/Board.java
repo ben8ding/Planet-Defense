@@ -25,7 +25,7 @@ public class Board extends JPanel implements ActionListener {
 	private final static int B_WIDTH = 1000;
 	private final static int B_HEIGHT = 600;
 	private final int DELAY = 15;
-	private int time = 5799;
+	private int time;
 	private int score = -1;
 	private static int lives = 5;
 	public static boolean isPause = false;
@@ -77,7 +77,7 @@ public class Board extends JPanel implements ActionListener {
 		if ((time - 33) % 100 == 0 && time >= 2500) {
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
-		if (time % 75  == 0 && time >= 5000 && (time < 5800 || time >= 6800)) {
+		if (time % 75  == 0 && time >= 5000 && (time < 5800 || time >= 7000)) {
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
 		if (time % 38 == 0 && time >= 7500) {
