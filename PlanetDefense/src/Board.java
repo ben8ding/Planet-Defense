@@ -83,7 +83,7 @@ public class Board extends JPanel implements ActionListener {
 		if (time % 38 == 0 && time >= 7500) {
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
-		if (time % 25 == 0 && time >= 1000){
+		if (time % 25 == 0 && time >= 10000){
 			aliens.add(new Alien(1000, (int) (Math.random() * 550 + 20), alienLevel));
 		}
 
