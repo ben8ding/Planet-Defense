@@ -12,6 +12,17 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import java.applet.*;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.*;
+
+import java.io.*;
+
+import java.net.*;
+
 
 public class Board extends JPanel implements ActionListener {
 
@@ -32,14 +43,42 @@ public class Board extends JPanel implements ActionListener {
 	private int alienLevel = 1;
 	private boolean lifeLost;
 	private int displayTime = 0;
-	
+	private AudioClip song; 
+	private URL songPath;
 	public static int craftNum = 1;
+	
+	
 	
 	public Board() {
 
 		initBoard();
+		
 	}
 
+	public static void playSound() {
+	    try {
+	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("phaser.wav").getAbsoluteFile());
+	        Clip clip = AudioSystem.getClip();
+	        clip.open(audioInputStream);
+	        clip.start();
+	    } catch(Exception ex) {
+	        System.out.println("Error with playing sound.");
+	        ex.printStackTrace();
+	    }
+	}
+	
+	public static void playSound2() {
+	    try {
+	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("explosion_x.wav").getAbsoluteFile());
+	        Clip clip = AudioSystem.getClip();
+	        clip.open(audioInputStream);
+	        clip.start();
+	    } catch(Exception ex) {
+	        System.out.println("Error with playing sound.");
+	        ex.printStackTrace();
+	    }
+	}
+	
 	void initBoard() {
 
 		addKeyListener(new TAdapter());
@@ -88,7 +127,7 @@ public class Board extends JPanel implements ActionListener {
 		
 		
 		if (time == 0000) {
-			//aliens.add(new Boss4(1000, 250, alienLevel*75));
+			//aliens.add(new Boss3(1000, 250, alienLevel*100));
 		}
 
 		if (time % 50 == 0) {
@@ -355,6 +394,7 @@ public class Board extends JPanel implements ActionListener {
 						alien.setVisible(false);
 						score+=alien.getmHealth();
 						alien.x = 4000;
+						playSound2();
 					}
 					
 
@@ -393,7 +433,16 @@ public class Board extends JPanel implements ActionListener {
 
 		Alien.speed = 2;
 		Missile.MISSILE_SPEED = 10;
+		Craft2.cs = Craft2.tcs;
 		Craft.cs = Craft.tcs;
+		Craft3.cs = Craft3.tcs;
+	
+		Boss.speed = Boss.tSpeed;
+		Boss2.speed = Boss2.tSpeed;;
+		Boss3.speed = Boss3.tSpeed;
+		
+		Missile.MISSILE_SPEED = 0;
+		
 		isPause = false;
 
 	}

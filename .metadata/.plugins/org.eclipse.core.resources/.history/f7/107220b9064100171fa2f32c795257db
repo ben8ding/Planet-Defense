@@ -83,12 +83,12 @@ public class Craft extends Sprite {
 
 		if (key == KeyEvent.VK_Z && key != KeyEvent.VK_X && i <= 90) {
 			fire1();
-			Board.playSound();
+
 		}
 
 		if (key == KeyEvent.VK_X && key != KeyEvent.VK_Z&& i <= 90) {
 			fire2();
-			Board.playSound();
+
 		}
 
 		if (key == KeyEvent.VK_LEFT) {
